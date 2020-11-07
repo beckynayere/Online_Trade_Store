@@ -41,7 +41,7 @@ class Product(models.Model):
     name = models.CharField(max_length=150)
     # id = models.IntegerField()
     #category = models.ForeignKey(Category, related_name='products',on_delete=models.CASCADE)
-    price = models.DecimalField(max_length=10, decimal_places=2)
+    price = models.DecimalField(max_length=10, decimal_places=3)
     slug = models.SlugField(max_length=200, db_index=True)
     image = models.ImageField(upload_to='images/')
     description = models.TextField()
@@ -152,7 +152,7 @@ class Category(models.Model):
         return reverse('shop:product_list_by_category', args=[self.slug])
 
 class Cart(models.Model):
-    
+
     user = models.OneToOneField(User,on_delete=models.CASCADE, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
